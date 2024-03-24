@@ -25,7 +25,7 @@ TODO
 
 **Client:** Flagsmith, Android, Java,
 
-**Server:** MindsDB, LightFM, Python, Dall-E
+**Server:** MindsDB, LightFM, Python, Dall-E, Makefile, Docker
 
 ## Authors
 
