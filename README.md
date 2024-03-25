@@ -4,7 +4,7 @@
 
 With a single tap, discover a world of exciting activities curated to bring joy and fun to your day. From outdoor adventures to creative projects, AmuseMate offers a diverse range of options to suit every mood and occasion.
 
-Note: the current data is mocked with Mockeroo and does not contain real activities, feel free to contribute
+Note: the current data is mocked with Mockaroo and does not contain real activities, feel free to contribute
 
 ## Features
 
