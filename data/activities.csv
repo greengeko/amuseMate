@@ -1,0 +1,16 @@
+id,title,description,materialsNeeded,solo
+1,Hiking in the Mountains,abc def ghi,false,false
+2,Cooking Class,jkl mno pqr,true,true
+3,Yoga,stu vwx yz,false,true
+4,Painting Workshop,foo bar baz,false,false
+5,Salsa Dancing,qux quux corge,true,true
+6,Photography Tour,grault garply waldo,false,true
+7,Pottery Making,fred plugh xyzzy,true,true
+8,Wine Tasting,thud wibble wobble,false,true
+9,Scuba Diving Adventure,lorem ipsum dolor,true,false
+10,Rock Climbing Expedition,sit amet consectetur,false,false
+11,Crochet Workshop,abc def ghi,false,false
+12,Learning New Language,jkl mno pqr,false,true
+13,Develop with MindsDB,stu vwx yz,true,false
+14,Use Flagsmith,foo bar baz,true,false
+15,Make a stranger laugh,qux quux corge,false,false
