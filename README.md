@@ -8,10 +8,7 @@ Note: the current data is mocked with Mockaroo and does not contain real activit
 
 ## Features
 
-- Light/dark mode toggle
-- Disable activities with materials needed
-- Disable paid activities
-
+- Disable activities with major age necessary
 
 ## Demo
 
@@ -27,7 +24,7 @@ TODO
 
 **Client:** Flagsmith, Android, Java,
 
-**Server:** MindsDB, LightFM, Python, Dall-E, Makefile, Docker
+**Server:** MindsDB, LightFM, Python, Makefile, Docker
 
 ## Authors
 
