@@ -1,9 +1,10 @@
 package com.example.amusemate;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.flagsmith.FlagsmithClient;
+import com.flagsmith.FlagsmithLoggerLevel;
+import com.flagsmith.exceptions.FlagsmithClientError;
+import com.flagsmith.models.Flags;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,41 +28,98 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonCenter;
     private TextView textArticleContent;
     private ImageView imageArticle;
+    private Button buttonSomethingElse;
+    private Button buttonBack;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String apiKey = "EWFmnsDpodY65G2c9S8tTD";
+        String apiUrl = "http://10.0.2.2:8000/api/v1/";
+        boolean isEnabled;
+      FlagsmithClient fsClient = FlagsmithClient
+                .newBuilder()
+                .setApiKey(apiKey)
+                .withApiUrl(apiUrl)
+                .enableLogging(FlagsmithLoggerLevel.ERROR)
+                .build();
+        try {
+            Flags flags = fsClient.getIdentityFlags("production_user_123456");
+            isEnabled = flags.isFeatureEnabled("materials");
+        } catch (FlagsmithClientError e) {
+            throw new RuntimeException(e);
+        }
+
+
+        if (isEnabled==true){}
+        /*try {
+            Boolean over18 = flags.isFeatureEnabled("materials");
+        } catch (FlagsmithClientError e) {
+            e.printStackTrace();
+        }*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        buttonCenter = findViewById(R.id.buttonCenter);
+        Button buttonCenter = findViewById(R.id.buttonCenter);
         textArticleContent = findViewById(R.id.textArticleContent);
         imageArticle = findViewById(R.id.imageArticle);
+        buttonSomethingElse = findViewById(R.id.buttonSomethingElse);
+        buttonBack = findViewById(R.id.buttonBack);
 
-        // Hide the image initially
         imageArticle.setVisibility(View.GONE);
+        buttonSomethingElse.setVisibility(View.GONE);
+        buttonBack.setVisibility(View.GONE);
+
 
         buttonCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Construct the URL with query parameters
+                String baseUrl = "http://10.0.2.2:5000/";
+                String excludedItems = "1,2"; // Replace with your suggested items
+                String url = baseUrl + "?suggested_items=" + excludedItems;
+
                 // Fetch the recommendation when the button is clicked
-                new FetchRecommendationTask().execute();
+                new FetchRecommendationTask().execute(url);
             }
         });
+
+
+        buttonSomethingElse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Construct the URL with empty suggested items
+                String baseUrl = "http://10.0.2.2:5000/";
+                String url = baseUrl + "?suggested_items=";
+
+                // Fetch the recommendation with empty suggested items when the button is clicked
+                new FetchRecommendationTask().execute(url);
+            }
+        });
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    private class FetchRecommendationTask extends AsyncTask<Void, Void, String> {
+    private class FetchRecommendationTask extends AsyncTask<String, Void, String> {
 
         @Override
-        protected String doInBackground(Void... voids) {
+        protected String doInBackground(String... urls) {
             String recommendation = "";
 
             // URL of the Flask server endpoint to fetch recommendation
-            String urlString = "http://10.0.2.2:5000/";
+            String urlString = urls[0];
 
             try {
                 URL url = new URL(urlString);
@@ -74,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     urlConnection.disconnect();
                 }
             } catch (IOException e) {
-                e.printStackTrace(); // Print the stack trace of the exception
+                e.printStackTrace();
             }
 
             return recommendation;
@@ -105,13 +168,33 @@ public class MainActivity extends AppCompatActivity {
                 // Set a placeholder image (you can replace this with your own image)
                 imageArticle.setImageResource(R.drawable.placeholder_image);
 
+                ImageView imageHeader = findViewById(R.id.imageHeader);
+                imageHeader.setVisibility(View.GONE);
+                Button buttonCenter = findViewById(R.id.buttonCenter);
+                buttonCenter.setVisibility(View.GONE);
                 // Show the image
                 imageArticle.setVisibility(View.VISIBLE);
+
+                // Show the "Something else" button
+                buttonSomethingElse.setVisibility(View.VISIBLE);
+                buttonBack.setVisibility(View.VISIBLE);
 
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(MainActivity.this, "Error parsing JSON", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private static FlagsmithClient getFlagsmithClient() {
+        String apiKey = "EWFmnsDpodY65G2c9S8tTD";
+        String apiUrl = "http://10.0.2.2:8000/api/v1/";
+
+        return FlagsmithClient
+                .newBuilder()
+                .setApiKey(apiKey)
+                .withApiUrl(apiUrl)
+                .enableLogging(FlagsmithLoggerLevel.ERROR)
+                .build();
     }
 }
