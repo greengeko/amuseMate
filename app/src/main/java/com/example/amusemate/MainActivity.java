@@ -3,8 +3,6 @@ package com.example.amusemate;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,33 +34,18 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonSomethingElse;
     private Button buttonBack;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String apiKey = "EWFmnsDpodY65G2c9S8tTD";
         String apiUrl = "http://10.0.2.2:8000/api/v1/";
-        boolean isEnabled;
+
       FlagsmithClient fsClient = FlagsmithClient
                 .newBuilder()
                 .setApiKey(apiKey)
                 .withApiUrl(apiUrl)
                 .enableLogging(FlagsmithLoggerLevel.ERROR)
                 .build();
-        try {
-            Flags flags = fsClient.getIdentityFlags("production_user_123456");
-            isEnabled = flags.isFeatureEnabled("materials");
-        } catch (FlagsmithClientError e) {
-            throw new RuntimeException(e);
-        }
 
-
-        if (isEnabled==true){}
-        /*try {
-            Boolean over18 = flags.isFeatureEnabled("materials");
-        } catch (FlagsmithClientError e) {
-            e.printStackTrace();
-        }*/
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -82,10 +65,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Construct the URL with query parameters
                 String baseUrl = "http://10.0.2.2:5000/";
-                String excludedItems = "1,2"; // Replace with your suggested items
+                String excludedItems;
+                boolean isEnabled;
+                try {
+                    Flags flags = fsClient.getIdentityFlags("production_user_123456");
+                    isEnabled = flags.isFeatureEnabled("adultcontent");
+                } catch (FlagsmithClientError e) {
+                    throw new RuntimeException(e);
+                }
+                if (isEnabled==true){
+                    excludedItems  = "0";
+                }else{
+                    excludedItems  = "0,1,2,3"; //exclude 18+ items
+                }
+
                 String url = baseUrl + "?suggested_items=" + excludedItems;
 
-                // Fetch the recommendation when the button is clicked
                 new FetchRecommendationTask().execute(url);
             }
         });
@@ -175,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 // Show the image
                 imageArticle.setVisibility(View.VISIBLE);
 
-                // Show the "Something else" button
+                // Show the "Something else" and the "go back" button
                 buttonSomethingElse.setVisibility(View.VISIBLE);
                 buttonBack.setVisibility(View.VISIBLE);
 
@@ -186,15 +181,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static FlagsmithClient getFlagsmithClient() {
-        String apiKey = "EWFmnsDpodY65G2c9S8tTD";
-        String apiUrl = "http://10.0.2.2:8000/api/v1/";
-
-        return FlagsmithClient
-                .newBuilder()
-                .setApiKey(apiKey)
-                .withApiUrl(apiUrl)
-                .enableLogging(FlagsmithLoggerLevel.ERROR)
-                .build();
-    }
 }
