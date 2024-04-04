@@ -8,7 +8,8 @@ Note: the current data is mocked with Mockaroo and does not contain real activit
 
 ## Features
 
-- Disable activities with major age necessary
+- Disable activities serverside with major age necessary.
+  This was made using https://www.flagsmith.com/ and the tought behind is to limit the activities based on the user's age.
 
 ## Demo
 
