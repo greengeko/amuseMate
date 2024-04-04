@@ -12,7 +12,7 @@ Note: the current data is mocked with Mockaroo and does not contain real activit
 
 ## Demo
 
-![Demo](https://github.com/greengeko/amuseMate/assets/25327740/30e33e98-9353-427b-8983-b6af03fb11ad)
+![Demo](https://github.com/greengeko/amuseMate/assets/25327740/7a44ce73-5b28-4fad-87d3-67ae347e84f2)
 
 
 ## Run Locally
