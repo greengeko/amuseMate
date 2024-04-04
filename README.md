@@ -17,7 +17,25 @@ TODO
 
 ## Run Locally
 
-TODO
+Step 0 (Download or Clone this project)
+
+Step 1 (Create a container with mindsdb running)
+```bash
+make create_mindsdb
+```
+Step 2 (Update/Install some package in the mindsb container such as lifghtfm)
+```bash
+make update_packages
+```
+Step 3 (Restart the container in order to apply the updates)
+```bash
+make restart_container
+```
+Step 4 (Launch the setup.py script in order to set up the MindsDB container with LighFM ML Engine and Model and upload the files contained in the /data folder)
+```bash
+make build_setup
+```
+Step 5 (Launch the app.py script and your server is set up and running!🎉 )
 
 
 ## Tech Stack
