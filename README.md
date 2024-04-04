@@ -37,10 +37,13 @@ make build_setup
 ```
 Step 5 (Launch the app.py and your server is set up and running!🎉 )
 
-Step 6 (Create the containers necessary for Flagsmith and after launching this command reach the GUI at http://localhost:8000/)
+Step 6 (Create the containers necessary for Flagsmith)
 ```bash
 docker-compose -f docker-compose.yml up
 ```
+Step 7 (Reach the GUI at http://localhost:8000/ and create a feature flag named "adultcontent")
+
+Step 8 (Go to the identities tab of your flagsmith environment and copy your personal API Key)
 
 
 ## Tech Stack
