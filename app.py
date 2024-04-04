@@ -20,7 +20,8 @@ def suggest_activity():
         # Update suggested_items set
         if suggested_items_list:
             suggested_items.clear()
-            suggested_items.update(suggested_items_list)
+            for item in suggested_items_list:
+                suggested_items.add(int(item))
 
         # Define the user (hardcoded for now)
         user_id = 4
