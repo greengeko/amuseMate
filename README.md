@@ -12,7 +12,11 @@ Note: the current data is mocked with Mockaroo and does not contain real activit
 
 ## Demo
 
-https://github.com/greengeko/amuseMate/assets/25327740/848a6fb6-e046-4875-ae6f-3a980ee91514
+
+
+https://github.com/greengeko/amuseMate/assets/25327740/d5b02c2d-2e93-4e4d-9adc-5fa61e803f82
+
+
 
 
 
