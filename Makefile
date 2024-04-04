@@ -35,7 +35,6 @@ build_setup:
 	docker run -it --name my_setup_container --network mindsdb_network $(DOCKER_IMAGE_NAME) bash -c "python3 setup.py"
 	@echo "Setup completed."
 
-
 clean:
 	docker stop my_setup_container || true
 	docker rm my_setup_container || true
