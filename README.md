@@ -35,7 +35,12 @@ Step 4 (Launch the setup.py script in order to set up the MindsDB container with
 ```bash
 make build_setup
 ```
-Step 5 (Launch the app.py script and your server is set up and running!🎉 )
+Step 5 (Launch the app.py and your server is set up and running!🎉 )
+
+Step 6 (Create the containers necessary for Flagsmith and after launching this command reach the GUI at http://localhost:8000/)
+```bash
+docker-compose -f docker-compose.yml up
+```
 
 
 ## Tech Stack
