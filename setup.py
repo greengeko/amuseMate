@@ -19,7 +19,7 @@ con.query(query)
 url = 'http://mindsdb_container:47334/api/sql/query'
 
 query2 = ("CREATE MODEL lightfm_model FROM files (SELECT * FROM ratings) PREDICT activityId USING engine = 'lightfm', "
-          "item_id = 'activityId', user_id = 'userId', threshold = 4,n_recommendations = 1")
+          "item_id = 'activityId', user_id = 'userId', threshold = 4,n_recommendations = 15")
 resp = requests.post(url, json={'query':query2}, verify=False)
 
 app = Flask(__name__)
