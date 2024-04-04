@@ -45,6 +45,8 @@ Step 7 (Reach the GUI at http://localhost:8000/ and create a feature flag named 
 
 Step 8 (Go to the identities tab of your flagsmith environment and copy your personal API Key)
 
+Step 9 (Paste your API Key at line 40 in MainActivity.java and you are ready to launch your app! Tip:use Android Studio!)
+
 
 ## Tech Stack
 
