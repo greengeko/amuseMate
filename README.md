@@ -19,8 +19,12 @@ Some of the activities are marked as "adultContent" and for mock data those woul
 
 https://github.com/greengeko/amuseMate/assets/25327740/d5b02c2d-2e93-4e4d-9adc-5fa61e803f82
 
+Some screenshots: 
 
-
+<div style="display: flex;">
+    <img src="https://github.com/greengeko/amuseMate/assets/25327740/4cfbf726-2c52-40c4-b02b-75d45f3acfcf" alt="Image 1" width="200" style="margin-right: 20px;">
+    <img src="https://github.com/greengeko/amuseMate/assets/25327740/950b8b86-35d1-45e4-aa07-42fd45783cd4" alt="Image 2" width="200">
+</div>
 
 
 ## Run Locally
