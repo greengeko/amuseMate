@@ -4,11 +4,13 @@
 
 With a single tap, discover a world of exciting activities curated to bring joy and fun to your day. From outdoor adventures to creative projects, AmuseMate offers a diverse range of options to suit every mood and occasion.
 
-Note: the current data is mocked with Mockaroo and does not contain real activities, feel free to contribute
+Note: the current data is mocked with Mockaroo and does not contain real activities, feel free to contribute or clone and adapt to your own necessities.
+The activities are suggested by using LightFM Engine integration in MindsDB which base the suggested activity choice on the past user-item ratings.
+Some of the activities are marked as "adultContent" and for mock data those would be items 1,2,3. 
 
 ## Features
 
-- Disable activities serverside with major age necessary.
+- Disable/Enable activities serverside with major age necessary.
   This was made using https://www.flagsmith.com/ and the tought behind is to limit the activities based on the user's age.
 
 ## Demo
