@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String apiKey = "EWFmnsDpodY65G2c9S8tTD";
+        String apiKey = "YOUR_API_KEY";
         String apiUrl = "http://10.0.2.2:8000/api/v1/";
 
       FlagsmithClient fsClient = FlagsmithClient
